@@ -21,6 +21,6 @@ class ProfileViewModel: ObservableObject {
             self?.currentUser = user
         }.store(in: &cancellables)
         
-        print("DEBUG: User in View Model from combine \(currentUser)")
+        print("DEBUG: User in View Model from combine \(String(describing: currentUser))")
     }
 }
