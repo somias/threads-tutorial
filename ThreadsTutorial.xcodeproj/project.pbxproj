@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0780C16B2A967E3E0015CA4E /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780C16A2A967E3E0015CA4E /* ExploreViewModel.swift */; };
+		0780C16D2A9681680015CA4E /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0780C16C2A9681680015CA4E /* PreviewProvider.swift */; };
 		078D9BF12A90EE0F00E59706 /* ThreadsTutorialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D9BF02A90EE0F00E59706 /* ThreadsTutorialApp.swift */; };
 		078D9BF32A90EE0F00E59706 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078D9BF22A90EE0F00E59706 /* ContentView.swift */; };
 		078D9BF52A90EE1000E59706 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 078D9BF42A90EE1000E59706 /* Assets.xcassets */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0780C16A2A967E3E0015CA4E /* ExploreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		0780C16C2A9681680015CA4E /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
 		078D9BED2A90EE0F00E59706 /* ThreadsTutorial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ThreadsTutorial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		078D9BF02A90EE0F00E59706 /* ThreadsTutorialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadsTutorialApp.swift; sourceTree = "<group>"; };
 		078D9BF22A90EE0F00E59706 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0780C1692A967E340015CA4E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0780C16A2A967E3E0015CA4E /* ExploreViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		078D9BE42A90EE0F00E59706 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +166,7 @@
 		078D9C012A90EE3B00E59706 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				0780C16C2A9681680015CA4E /* PreviewProvider.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -247,6 +260,7 @@
 		078D9C182A91203000E59706 /* Explore */ = {
 			isa = PBXGroup;
 			children = (
+				0780C1692A967E340015CA4E /* ViewModel */,
 				078D9C192A91203500E59706 /* Views */,
 			);
 			path = Explore;
@@ -485,9 +499,11 @@
 				078D9C292A91231000E59706 /* ThreadCell.swift in Sources */,
 				078D9BF32A90EE0F00E59706 /* ContentView.swift in Sources */,
 				078D9C0D2A910FC800E59706 /* ThreadsTextFieldModifier.swift in Sources */,
+				0780C16B2A967E3E0015CA4E /* ExploreViewModel.swift in Sources */,
 				078D9BF12A90EE0F00E59706 /* ThreadsTutorialApp.swift in Sources */,
 				078D9C0A2A910CD500E59706 /* RegistrationView.swift in Sources */,
 				078D9C4C2A94C74C00E59706 /* LoginViewModel.swift in Sources */,
+				0780C16D2A9681680015CA4E /* PreviewProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
