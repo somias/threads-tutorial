@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @StateObject var viewModel = ProfileViewModel()
+    let user: User
     
     @State private var selectedFilter: ProfileThreadFilter = .threads
     @Namespace var animation
@@ -18,104 +18,98 @@ struct ProfileView: View {
         return UIScreen.main.bounds.width / count - 20
     }
     
-    private var currentUser: User? {
-        return viewModel.currentUser
-    }
-    
     var body: some View {
-        NavigationStack {
-            ScrollView(showsIndicators: false) {
-                // bio and stats
-                VStack(spacing: 20) {
-                    HStack(alignment: .top) {
-                        VStack(alignment: .leading, spacing: 12) {
-                            // fullname and username
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(currentUser?.fullname ?? "")
-                                    .font(.title2)
-                                    .fontWeight(.semibold)
-                                
-                                Text(currentUser?.username ?? "")
-                                    .font(.subheadline)
-                            }
+        ScrollView(showsIndicators: false) {
+            // bio and stats
+            VStack(spacing: 20) {
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 12) {
+                        // fullname and username
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(user.fullname)
+                                .font(.title2)
+                                .fontWeight(.semibold)
                             
-                            // This one Im using if let because if User doesn't have bio, it will not leave empty space.
-                            if let bio = currentUser?.bio {
-                                Text(bio)
-                                    .font(.footnote)
-                                    .multilineTextAlignment(.leading)
-                            }
-                            
-                            Text("2 followers")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                            
+                            Text(user.username)
+                                .font(.subheadline)
                         }
-                        Spacer()
                         
-                        CircularProfileImageView()
-                    }
-                    
-                    Button {
-                        
-                    } label: {
-                        Text("Follow")
-                            .font(.subheadline)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .frame(width: 352, height: 32)
-                            .background(.black)
-                            .cornerRadius(8)
-                    }
-                    
-                    // user content list view
-                    VStack {
-                        HStack {
-                            ForEach(ProfileThreadFilter.allCases) { filter in
-                                VStack {
-                                    Text(filter.title)
-                                        .font(.subheadline)
-                                        .fontWeight(selectedFilter == filter ? .semibold : .regular)
-                                    
-                                    if selectedFilter == filter {
-                                        Rectangle()
-                                            .foregroundColor(.black)
-                                            .frame(width: filterBarWidth, height: 1)
-                                            .matchedGeometryEffect(id: "item", in: animation)
-                                    } else {
-                                        Rectangle()
-                                            .foregroundColor(.clear)
-                                            .frame(width: filterBarWidth, height: 1)
-                                    }
-                                }
-                                .onTapGesture {
-                                    withAnimation(.spring()) {
-                                        selectedFilter = filter
-                                    }
-                                }
-                            }
+                        // This one Im using if let because if User doesn't have bio, it will not leave empty space.
+                        if let bio = user.bio {
+                            Text(bio)
+                                .font(.footnote)
+                                .multilineTextAlignment(.leading)
                         }
+                        
+                        Text("2 followers")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                        
                     }
-
+                    Spacer()
+                    
+                    CircularProfileImageView()
                 }
-               
-            }
-            .toolbar {
+                
                 Button {
-                    AuthService.shared.signOut()
+                    
                 } label: {
-                    Image(systemName: "line.3.horizontal")
-                        .tint(.black)
+                    Text("Follow")
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                        .frame(width: 352, height: 32)
+                        .background(.black)
+                        .cornerRadius(8)
                 }
-
+                
+                // user content list view
+                VStack {
+                    HStack {
+                        ForEach(ProfileThreadFilter.allCases) { filter in
+                            VStack {
+                                Text(filter.title)
+                                    .font(.subheadline)
+                                    .fontWeight(selectedFilter == filter ? .semibold : .regular)
+                                
+                                if selectedFilter == filter {
+                                    Rectangle()
+                                        .foregroundColor(.black)
+                                        .frame(width: filterBarWidth, height: 1)
+                                        .matchedGeometryEffect(id: "item", in: animation)
+                                } else {
+                                    Rectangle()
+                                        .foregroundColor(.clear)
+                                        .frame(width: filterBarWidth, height: 1)
+                                }
+                            }
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    selectedFilter = filter
+                                }
+                            }
+                        }
+                    }
+                }
+                
             }
-            .padding(.horizontal)
+            
         }
+        .toolbar {
+            Button {
+                AuthService.shared.signOut()
+            } label: {
+                Image(systemName: "line.3.horizontal")
+                    .tint(.black)
+            }
+            
+        }
+        .padding(.horizontal)
     }
 }
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(user: dev.user)
     }
 }
